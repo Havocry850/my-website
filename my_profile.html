@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile - CareerBuddy</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(rgba(144, 238, 144, 0.8), rgba(144, 238, 144, 0.8)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4') no-repeat center center/cover;
+      min-height: 100vh;
+      color: #003300;
+    }
+
+    .navbar {
+      background: rgba(0, 50, 0, 0.6);
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .navbar a:hover {
+      background: rgba(255,255,255,0.5);
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .profile-item {
+      background: rgba(0, 100, 0, 0.5);
+      margin: 15px 0;
+      padding: 15px;
+      border-radius: 8px;
+      color: white;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .edit-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      text-decoration: none;
+      background: #004d00;
+      color: white;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .edit-button:hover {
+      background: #006600;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0,0.4);
+      padding-top: 60px;
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .modal form input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <h1>CareerBuddy</h1>
+    <a href="careerbuddy_home.html">Back to Dashboard</a>
+  </div>
+
+  <div class="container">
+    <h2>My Profile</h2>
+    
+    <div class="profile-item"><strong>Name:</strong> <span id="profileName"></span></div>
+    <div class="profile-item"><strong>Email:</strong> <span id="profileEmail"></span></div>
+    <div class="profile-item"><strong>Interest Area:</strong> <span id="profileInterest"></span></div>
+    <div class="profile-item"><strong>Career Goal:</strong> <span id="profileGoal"></span></div>
+    <div class="profile-item"><strong>Assessments Completed:</strong> 2</div>
+
+    <!-- Edit Profile Button -->
+    <a href="#" class="edit-button" id="editButton">Edit Profile</a>
+  </div>
+
+  <!-- Modal for Editing Profile -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Edit Profile</h2>
+      <form id="editForm">
+        <label for="editName">Name:</label>
+        <input type="text" id="editName" name="editName" required>
+
+        <label for="editEmail">Email:</label>
+        <input type="email" id="editEmail" name="editEmail" required>
+
+        <label for="editInterest">Interest Area:</label>
+        <input type="text" id="editInterest" name="editInterest" required>
+
+        <label for="editGoal">Career Goal:</label>
+        <input type="text" id="editGoal" name="editGoal" required>
+
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Get user data from localStorage
+    document.getElementById("profileName").textContent = localStorage.getItem("userName") || "N/A";
+    document.getElementById("profileEmail").textContent = localStorage.getItem("userEmail") || "N/A";
+    document.getElementById("profileInterest").textContent = localStorage.getItem("userInterest") || "N/A";
+    document.getElementById("profileGoal").textContent = localStorage.getItem("userGoal") || "N/A";
+
+    // Get modal and open it when Edit button is clicked
+    var modal = document.getElementById("editModal");
+    var editButton = document.getElementById("editButton");
+    var span = document.getElementsByClassName("close")[0];
+
+    // Open the modal
+    editButton.onclick = function() {
+      modal.style.display = "block";
+
+      // Prefill the form fields with current profile data
+      document.getElementById("editName").value = localStorage.getItem("userName") || "";
+      document.getElementById("editEmail").value = localStorage.getItem("userEmail") || "";
+      document.getElementById("editInterest").value = localStorage.getItem("userInterest") || "";
+      document.getElementById("editGoal").value = localStorage.getItem("userGoal") || "";
+    }
+
+    // Close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // Close the modal if the user clicks anywhere outside of it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    // Handle form submission and save the new data
+    document.getElementById("editForm").onsubmit = function(e) {
+      e.preventDefault();
+
+      // Get the new values
+      var name = document.getElementById("editName").value;
+      var email = document.getElementById("editEmail").value;
+      var interest = document.getElementById("editInterest").value;
+      var goal = document.getElementById("editGoal").value;
+
+      // Save new data to localStorage
+      localStorage.setItem("userName", name);
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userInterest", interest);
+      localStorage.setItem("userGoal", goal);
+
+      // Update the profile page with the new data
+      document.getElementById("profileName").textContent = name;
+      document.getElementById("profileEmail").textContent = email;
+      document.getElementById("profileInterest").textContent = interest;
+      document.getElementById("profileGoal").textContent = goal;
+
+      // Close the modal
+      modal.style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

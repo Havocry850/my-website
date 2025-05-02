@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Settings - CareerBuddy</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(rgba(144, 238, 144, 0.8), rgba(144, 238, 144, 0.8)), url('https://images.unsplash.com/photo-1549924231-f129b911e442') no-repeat center center/cover;
+      min-height: 100vh;
+      color: #003300;
+    }
+
+    .navbar {
+      background: rgba(0, 50, 0, 0.6);
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .navbar a:hover {
+      background: rgba(255,255,255,0.5);
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    .setting-group {
+      margin-bottom: 25px;
+    }
+
+    .setting-group label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .setting-group select, .setting-group input[type="checkbox"] {
+      font-size: 1rem;
+      padding: 8px;
+    }
+
+    .setting-group input[type="checkbox"] {
+      transform: scale(1.2);
+      margin-right: 10px;
+    }
+
+    .save-button {
+      display: block;
+      margin: 30px auto 10px;
+      padding: 10px 20px;
+      background: #004d00;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .save-button:hover {
+      background: #006600;
+    }
+
+    .danger-zone {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .danger-zone button {
+      background: #cc0000;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .danger-zone button:hover {
+      background: #990000;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <h1 id="appTitle">CareerBuddy</h1>
+    <a href="careerbuddy_home.html" id="backDashboard">Back to Dashboard</a>
+  </div>
+
+  <div class="container">
+    <h2 id="settingsTitle">Settings</h2>
+
+    <div class="setting-group">
+      <label for="language" id="languageLabel">Preferred Language:</label>
+      <select id="language" onchange="changeLanguage()">
+        <option value="en">English</option>
+        <option value="fil">Filipino</option>
+      </select>
+    </div>
+
+    <div class="setting-group">
+      <label>
+        <input type="checkbox" id="notifications" checked />
+        <span id="notifLabel">Enable Notifications</span>
+      </label>
+    </div>
+
+    <div class="setting-group">
+      <label>
+        <input type="checkbox" id="darkMode" />
+        <span id="darkModeLabel">Enable Dark Mode</span>
+      </label>
+    </div>
+
+    <button class="save-button" onclick="saveSettings()" id="saveBtn">Save Settings</button>
+
+    <div class="danger-zone">
+      <h3 id="dangerTitle">Danger Zone</h3>
+      <button onclick="deleteAccount()" id="deleteBtn">Delete Account</button>
+    </div>
+  </div>
+
+  <script>
+    function saveSettings() {
+      const lang = document.getElementById('language').value;
+      const notify = document.getElementById('notifications').checked;
+      const dark = document.getElementById('darkMode').checked;
+
+      const message = lang === "fil" 
+        ? `Mga setting na na-save:\nWika: ${lang}\nAbiso: ${notify ? "Oo" : "Hindi"}\nMadilim na Mode: ${dark ? "Oo" : "Hindi"}`
+        : `Settings saved:\nLanguage: ${lang}\nNotifications: ${notify}\nDark Mode: ${dark}`;
+
+      alert(message);
+    }
+
+    function deleteAccount() {
+      const lang = document.getElementById('language').value;
+      const confirmMsg = lang === "fil" 
+        ? "Sigurado ka bang gusto mong tanggalin ang iyong account?"
+        : "Are you sure you want to delete your account?";
+
+      confirm(confirmMsg);
+    }
+
+    function changeLanguage() {
+      const lang = document.getElementById('language').value;
+
+      if (lang === "fil") {
+        document.getElementById('settingsTitle').textContent = "Mga Setting";
+        document.getElementById('languageLabel').textContent = "Pinapaborang Wika:";
+        document.getElementById('notifLabel').textContent = "Paganahin ang Mga Abiso";
+        document.getElementById('darkModeLabel').textContent = "Paganahin ang Madilim na Mode";
+        document.getElementById('saveBtn').textContent = "I-save ang Mga Setting";
+        document.getElementById('dangerTitle').textContent = "Delikadong Lugar";
+        document.getElementById('deleteBtn').textContent = "Tanggalin ang Account";
+        document.getElementById('backDashboard').textContent = "Bumalik sa Dashboard";
+      } else {
+        document.getElementById('settingsTitle').textContent = "Settings";
+        document.getElementById('languageLabel').textContent = "Preferred Language:";
+        document.getElementById('notifLabel').textContent = "Enable Notifications";
+        document.getElementById('darkModeLabel').textContent = "Enable Dark Mode";
+        document.getElementById('saveBtn').textContent = "Save Settings";
+        document.getElementById('dangerTitle').textContent = "Danger Zone";
+        document.getElementById('deleteBtn').textContent = "Delete Account";
+        document.getElementById('backDashboard').textContent = "Back to Dashboard";
+      }
+    }
+
+    // Auto-apply saved language on load (optional)
+    window.onload = changeLanguage;
+  </script>
+</body>
+</html>

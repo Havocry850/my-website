@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logout - CareerBuddy</title>
+  <style>
+    body {
+      background: linear-gradient(rgba(144, 238, 144, 0.9), rgba(144, 238, 144, 0.9)), url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe') no-repeat center center/cover;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .logout-box {
+      background: rgba(0, 100, 0, 0.6);
+      padding: 30px;
+      border-radius: 10px;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      width: 300px;
+      text-align: center;
+    }
+
+    .logout-box h2 {
+      margin-bottom: 20px;
+    }
+
+    .logout-box button {
+      width: 100%;
+      padding: 10px;
+      background: #004d00;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .logout-box button:hover {
+      background: #003300;
+    }
+
+    .logout-box a {
+      display: block;
+      margin-top: 15px;
+      color: white;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="logout-box">
+    <h2>Are you sure you want to log out?</h2>
+    <form action="index.html" method="GET">
+      <button type="submit">Logout</button>
+    </form>
+    <a href="careerbuddy_home.html">Go back to Dashboard</a>
+  </div>
+</body>
+</html>

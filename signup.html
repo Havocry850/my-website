@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up - CareerBuddy</title>
+  
+  <!-- Google Fonts Link for Custom Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(rgba(144, 238, 144, 0.9), rgba(144, 238, 144, 0.9)), url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe') no-repeat center center/cover;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .signup-box {
+      background: rgba(0, 100, 0, 0.6);
+      padding: 30px;
+      border-radius: 10px;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      width: 300px;
+      text-align: center;
+    }
+
+    .signup-box img {
+      width: 80px;
+      margin-bottom: 10px;
+    }
+
+    .signup-box h2 {
+      margin-bottom: 20px;
+    }
+
+    .signup-box input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .signup-box button {
+      width: 100%;
+      padding: 10px;
+      background: #004d00;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .signup-box a {
+      display: block;
+      margin-top: 15px;
+      color: white;
+      text-decoration: underline;
+    }
+
+    .app-name {
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Poppins', sans-serif;
+      font-size: 3rem;
+      font-weight: 600;
+      color: rgb(91, 255, 3);
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    /* ------------------- DARK MODE STYLES ------------------- */
+    .dark-mode {
+      background: #121212 !important;
+      background-image: none !important;
+      color: white;
+    }
+
+    .dark-mode .signup-box {
+      background: rgba(30, 30, 30, 0.95);
+      color: #fff;
+    }
+
+    .dark-mode .signup-box input {
+      background: #2a2a2a;
+      color: white;
+    }
+
+    .dark-mode .signup-box button {
+      background: #1e8e3e;
+    }
+
+    .dark-mode .signup-box a {
+      color: #9effa6;
+    }
+
+    .dark-mode .app-name {
+      color: #9effa6;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-name">CareerBuddy</div>
+
+  <div class="signup-box">
+    <img src="https://cdn.shortpixel.ai/client/q_lossless,ret_img,w_2735/https://www.bitext.com/wp-content/uploads/2019/01/bot-automation-234tdgf.png" alt="CareerBuddy Logo" />
+    <h2>Create Account</h2>
+    <form id="signupForm">
+      <input type="text" id="fullName" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="address" id="address" placeholder="Address" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Sign Up</button>
+    </form>
+    <a href="index.html">Already have an account? Sign In</a>
+  </div>
+
+  <script>
+    // Check and apply dark mode from localStorage
+    window.onload = function () {
+      const isDarkMode = localStorage.getItem('darkModeEnabled') === 'true';
+      if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+      }
+    };
+
+    // Sign-up logic
+    document.getElementById("signupForm").onsubmit = function(e) {
+      e.preventDefault();
+      
+      var fullName = document.getElementById("fullName").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      var address = document.getElementById("address").value;
+
+      localStorage.setItem('userName', fullName);
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userPassword', password);
+      localStorage.setItem('userAddress', address);
+      
+      window.location.href = "careerbuddy_home.html";
+    }
+  </script>
+</body>
+</html>

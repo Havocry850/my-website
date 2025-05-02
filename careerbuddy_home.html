@@ -1,0 +1,178 @@
+<!-- Save as: careerbuddy_home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CareerBuddy - Dashboard</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: linear-gradient(rgba(144, 238, 144, 0.7), rgba(144, 238, 144, 0.7)), url('https://images.unsplash.com/photo-1522199710521-72d69614c702') no-repeat center center/cover;
+      overflow: hidden;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .navbar {
+      background: rgba(0, 50, 0, 0.5);
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #004d00;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .nav-buttons a {
+      text-decoration: none;
+      color: white;
+      font-size: 1rem;
+      padding: 10px 15px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.2);
+      transition: background 0.3s ease;
+    }
+
+    .nav-buttons a:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .content {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+    }
+
+    .content h2 {
+      font-size: 2.5rem;
+      color: #003300;
+      text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.3);
+    }
+
+    .content p {
+      font-size: 1.2rem;
+      color: white;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+    }
+
+    .selection-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      justify-items: center;
+      margin: 40px auto;
+      max-width: 600px;
+    }
+
+    .selection-container a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.2rem;
+      padding: 20px 30px;
+      border-radius: 10px;
+      background: rgba(0, 100, 0, 0.6);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .selection-container a:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: scale(1.05);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Dark Mode Styles */
+    body.dark-mode {
+      background: #121212;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .navbar {
+      background: rgba(30, 30, 30, 0.8);
+    }
+
+    body.dark-mode .navbar h1 {
+      color: #90ee90;
+    }
+
+    body.dark-mode .nav-buttons a {
+      background: rgba(255, 255, 255, 0.1);
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .nav-buttons a:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    body.dark-mode .content h2 {
+      color: #90ee90;
+      text-shadow: none;
+    }
+
+    body.dark-mode .content p {
+      color: #ccc;
+      text-shadow: none;
+    }
+
+    body.dark-mode .selection-container a {
+      background: rgba(255, 255, 255, 0.05);
+      color: #90ee90;
+    }
+
+    body.dark-mode .selection-container a:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <h1>CareerBuddy</h1>
+    <div class="nav-buttons">
+      <a href="careerbuddy_home.html">Dashboard</a>
+      <a href="my_profile.html">My Profile</a>
+      <a href="settings.html">Settings</a>
+      <a href="logout.html">Log Out</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <h2>Welcome to CareerBuddy!</h2>
+    <p>Explore your potential. Discover your path.</p>
+
+    <div class="selection-container">
+      <a href="explore_careers.html">Explore Careers</a>
+      <a href="skill_assessment.html">Skill Assessment</a>
+      <a href="my_profile.html">My Profile</a>
+      <a href="settings.html">Settings</a>
+    </div>
+  </div>
+
+  <script>
+    // Check if dark mode is enabled in localStorage
+    document.addEventListener("DOMContentLoaded", function() {
+      if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
+      }
+    });
+  </script>
+</body>
+</html>
